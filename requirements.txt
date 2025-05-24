@@ -1,0 +1,16 @@
+datasets==3.5.0
+faiss_cpu==1.11.0
+geoopt==0.5.0
+jax==0.4.25
+joblib==1.4.2
+matplotlib==3.7.3
+numba==0.61.2
+numpy==2.2.6
+pandas==2.2.3
+pymanopt==2.2.1
+pytorch_metric_learning==2.8.1
+scikit_learn==1.6.1
+torch==2.6.0
+tqdm==4.67.1
+umap==0.1.1
+umap_learn==0.5.7
