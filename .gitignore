@@ -1,4 +1,5 @@
-# Ignore NumPy array files due to size limitations...
-*.npy
 *.npz
-*__pychace__/
+*.gz
+*.npy
+
+__pycache__/
