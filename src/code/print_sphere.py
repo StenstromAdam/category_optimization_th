@@ -7,12 +7,9 @@ def print_sphere(points, path, categories = 0, colors = 0):
     '''
 
     dim = len(points[0])
-
     if dim not in (2, 3):
         print("Can only sphere plot for 2 and 3 dimensions. Currently ", dim, "\n No plot generated...")
         return
-        
-
 
     plt.style.use('ggplot')
     if dim == 2:
