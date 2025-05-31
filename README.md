@@ -1,11 +1,9 @@
-# Repository for the thesis Scalable Optimization of product categories using Multi-Dimensional Scaling and LLM embeddings.
+# Repository for the thesis Scalable Optimization of Product Categories using Multi-Dimensional Scaling and LLM embeddings.
 
-The required packages are located listed in requirements.txt and installed by running the following command in same folder as this file:
+The required packages are located in requirements.txt and installed by running the following command in same folder as this file:
 ```
     pip install -r requirements.txt
 ```
-
-The following files are included in the repository and corresponds to the following.
 
 Currently all the program as are run with:
 
@@ -13,9 +11,10 @@ Currently all the program as are run with:
       python --FILE_NAME--
 ```
 
-This will be README will be updated once that is fixed.
+However, another solution will be implemented and this README will be updated once that is fixed.
 
 
+The following files are included in the repository and corresponds to the following.
 ```
 category_optimization_th
 |   README.md
@@ -37,6 +36,7 @@ category_optimization_th
         └─  optimize_hierachical.py             # Optimiziation for hierachical structure
         └─  optimize_smacof.py                  # Optimize for smacof
         └─  optimize_manifold.py                # Optimize using riemannian ADAM and SGD
+        └─  print_sphere.py                     # Function for printing sphere/cricle for 2 and 3 dimensions.
   |     
   └─────evaluation      # Any file generated from code is stored/put here.
         |
