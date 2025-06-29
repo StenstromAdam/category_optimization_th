@@ -1,5 +1,6 @@
 *.npz
 *.gz
 *.npy
+*.pt
 
 __pycache__/

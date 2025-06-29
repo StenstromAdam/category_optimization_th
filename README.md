@@ -1,4 +1,4 @@
-# Repository for the thesis Scalable Optimization of Product Categories using Multi-Dimensional Scaling and LLM embeddings.
+# Repository for the thesis Scalable Optimization of Product Categories using Dimension Reduction and LLM embeddings.
 
 The required packages are located in requirements.txt and installed by running the following command in same folder as this file:
 ```
@@ -19,6 +19,8 @@ The following files are included in the repository and corresponds to the follow
 category_optimization_th
 |   README.md
 |   requirements.txt
+|
+└─experimental    # Another more experimental approach of optimizing this problem
 |
 └─src
   |     
@@ -44,8 +46,8 @@ category_optimization_th
         └─ Flipkart
         └─ Restaurants
   |
-  └─────exlpored_ideas    # Some explored ideas we tried
+  └─────tested_ideas    # Some explored ideas we tried
         |
         └─optimize_umap.py
-        └─optimize_projected_gradient.py            
+        └─optimize_projected_gradient.py  
 ```
