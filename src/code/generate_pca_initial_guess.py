@@ -65,8 +65,8 @@ def calculate_pca_input(input_data, points, dimensions):
         optimal_points = normalize_points(optimal_points, estimated_center)
         optimal_points /= np.linalg.norm(optimal_points, axis=1, keepdims=True)
         e_time = time.time() - start_time
-        accuracy, score, lac = get_results(input_data, optimal_points)
-        results += [{"Accuracy": accuracy, "Time": e_time, "Points": points, "Dim": dim, "Score": score, "Lac": lac}]
+        trust, ranked, unranked, lac_index = get_results(input_data, optimal_points)
+        results += [{"Trustworthiness": trust, "Ranked": ranked, "Points": points, "Dim": dim, "Score": unranked, "Lac": lac_index}]
         optima_matrices.append(optimal_points)
     return pd.DataFrame(results), optima_matrices
 
@@ -74,7 +74,7 @@ def calculate_pca_input(input_data, points, dimensions):
 if __name__ == "__main__":
 
     dataset = 'Flipkart'    # Chosen dataset
-    dimensions = [128]      # Select number of dimensions to optimzie for
+    dimensions = [3] + list(range(5, 125, 5)) + [128]      # Select number of dimensions to optimzie for
 
     # Retrieve hiearchical tree and data from dataset
     match dataset:
@@ -97,7 +97,7 @@ if __name__ == "__main__":
 
     # Save the dataset and values into the evaluation folders
     avg_frame.to_csv('../evaluation/' + dataset + '/PCA_' + dataset + '.csv', index=False)
-    np.savez('../evaluation/' + dataset + '/PCA_' + dataset + '.csv', *optima_matrices)
+    np.savez('../evaluation/' + dataset + '/PCA_' + dataset + '.gz', *optima_matrices)
 
 
 

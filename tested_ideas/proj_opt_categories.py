@@ -28,9 +28,6 @@ def compute_gradient(x, weight_matrix):
     The gradient of the objective function. Used to calculated the steepest descent direction for next iteration.
     :param x: Current placement of lower-dimensional embeddings.
     :param weight_matrix: A matrix defnining relations between points in x0 for determining optimal placement.
-    diffs = x[:, np.newaxis, :] - x[np.newaxis, :, :] 
-    dists = np.linalg.norm(diffs, axis=-1, keepdims=True) + 1e-8
-    grad = -2 * np.sum(weight_matrix[..., np.newaxis] * diffs / dists, axis=1)
     '''
     n, d = x.shape
     grad = np.zeros((n, d))

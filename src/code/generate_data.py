@@ -66,7 +66,6 @@ def get_flipkart(file_path=EMBED_PATH, csv_path=DATASET_PATH):
         # Add the list of products from the regex search to the root.
         add_list_to_root(list, root, 0, ds['embedding_vectors'][j])
         j += 1
-    print(j)
     category_dictionary = {}
     _, category_dictionary = calculate_embedding_vectors(root, category_dictionary)
 
@@ -74,10 +73,9 @@ def get_flipkart(file_path=EMBED_PATH, csv_path=DATASET_PATH):
     category_dictionary.pop('root')
 
     try:
-        initial_guesses = np.load("../evaluation/flip/PCA_INPUT_FLIP.gz.npz")
+        initial_guesses = np.load("../evaluation/Flipkart/PCA_Flipkart.gz.npz")
     except Exception as e:
-        print("File not found. A input file needs to be created using the \"create_input\" file. \n\n")
-        print(e)
+        print("File not found. A input file needs to be created using the \"generate_pca_inital_guess\" file. \n\n")
         initial_guesses = None
 
     return root, category_dictionary, initial_guesses
@@ -94,12 +92,10 @@ def get_restaurants(file_path=EMBED_PATH_RES, csv_path=DATASET_PATH_RES):
         i += 1
 
     try:
-        initial_guesses = np.load("../evaluation/rest/PCA_INPUT_REST.gz.npz")
+        initial_guesses = np.load("../evaluation/Restaurants/PCA_Restaurants.gz.npz")
     except Exception as e:
+        print("File not found. A input file needs to be created using the \"generate_pca_inital_guess\" file. \n\n")
         initial_guesses = None
-        print("File not found. A input file needs to be created using the \"create_input\" file. \n\n")
-        print(e)
-        #exit(0)
     return cat_dict, initial_guesses
 
 def read_data_flip(embedding_path, csv_path):
@@ -182,11 +178,12 @@ def get_amazon():
     '''
         Returns the dataset for amazon.
     '''
-    dataset = load_from_disk("../data/Amazon2")  # adjust path if needed
+    dataset = load_from_disk("../data/Amazon")  # adjust path if needed
     data = dataset.to_pandas().to_dict()
     data = dict(zip(data["category_name"].values(), data["average_embedding"].values()))
     try:
-        intial_guesses = np.load("../evaluation/amaz/PCA_INPUT_AMAZ.gz.npz")
+        intial_guesses = np.load("../evaluation/Amazon/PCA_Amazon.gz.npz")
     except:
+        print("File not found. A input file needs to be created using the \"generate_pca_inital_guess\" file. \n\n")
         intial_guesses = None
     return data, intial_guesses
