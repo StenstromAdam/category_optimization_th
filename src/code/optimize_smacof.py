@@ -59,7 +59,7 @@ if __name__ == '__main__':
     method = 'smacof'       # Only one available, although others can easily be implemented by undoing the comments and some fixes.
     dimensions = [128]      # Target dimensions to optimize for.
     
-    # Retrieve hiearchical tree and data from dataset
+    # Retrieve hierarchical tree and data from dataset
     match dataset:
         case 'Flipkart':
             tree, data, initial_guesses = get_flipkart()

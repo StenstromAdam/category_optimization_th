@@ -9,8 +9,8 @@ import numpy as np
 import torch.nn as nn
 import pandas as pd
 
-FIG_PATH = '../figures/hierachical_3dim_fig.png'
-SAVE_PATH = '../data/Flipkart/hierachical_result.csv'
+FIG_PATH = '../figures/hierarchical_3dim_fig.png'
+SAVE_PATH = '../evaluation/Flipkart/hierarchical_result.csv'
 
 def print_stats():   
     from sklearn.metrics import pairwise_distances
@@ -76,7 +76,7 @@ pos_margin = 1.0            # Margin set for the hinge loss.
 temperature = 0.8           # Decides how hard we push negatives. Lower = more push on negatives
 dims = [128]                # Select the the dimension you want to optimize for.
 print_statistics = False    # If you want to print positive and negative similarities between random parent and children.
-lr = 1.0                    # Needs to adjusted for SGD and ADAM. SGD ~ 1.0 but can be higher and ADAM ~ 1e-3
+lr = 1e-3                    # Needs to adjusted for SGD and ADAM. SGD ~ 1.0 but can be higher and ADAM ~ 1e-3
 w_min = 0                   # Set if wanted to ensure min distance between parent and child
 
 all_nodes, node2idx, edge_list = index_tree_internal(root)
@@ -122,7 +122,7 @@ for d in dims:
     # We are working on the sphere
     manifold   = geoopt.SphereExact()
     embeddings = ManifoldParameter(emb_init, manifold=manifold)
-    opt     = geoopt.optim.RiemannianSGD([{'params': embeddings}], lr=lr)
+    opt     = geoopt.optim.RiemannianAdam([{'params': embeddings}], lr=lr)
     loss_CEL = nn.CrossEntropyLoss()
 
     # Optimization loop
@@ -163,7 +163,6 @@ for d in dims:
 
     # Detach embeddings -> numpy
     final_emb = embeddings.detach().cpu().numpy()
-    print(len(final_emb))
 
     names = [n.name for n,_ in all_nodes]
 
@@ -183,4 +182,5 @@ for d in dims:
 
 # Save the results to file.
 frame = pd.DataFrame(results)
+print("Saved to: ", SAVE_PATH)
 frame.to_csv(SAVE_PATH, index=False)
